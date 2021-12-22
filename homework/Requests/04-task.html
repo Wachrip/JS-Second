@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 05</title>
+  </head>
+
+  <body>
+    <table id="table"></table>
+    <script>
+      /*
+        Задание:
+        Напишите сценарий, который выполняет GET запрос по адресу
+        https://jsonplaceholder.typicode.com/todos
+        и выводит содержимое ответа в виде таблицы.
+        */
+
+      let url = "https://jsonplaceholder.typicode.com/todos";
+
+      let table = document.querySelector("#table");
+      fetch(url)
+        .then((response) => response.json())
+        .then((todos) => {
+          todos.map((todo) => {
+            let tr = document.createElement("tr");
+            tr.insertAdjacentHTML("beforeend", `<td>${todo.userId}</td>`);
+            tr.insertAdjacentHTML("beforeend", `<td>${todo.id}</td>`);
+            tr.insertAdjacentHTML("beforeend", `<td>${todo.title}</td>`);
+            tr.insertAdjacentHTML("beforeend", `<td>${todo.completed}</td>`);
+            table.append(tr);
+          });
+        });
+    </script>
+  </body>
+</html>
